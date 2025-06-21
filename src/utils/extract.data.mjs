@@ -11,14 +11,26 @@ const ssId = "1lYCzgstw4dZ3Wb_TwVVUvgJUr_iAoTkjpWzA7uP_Lyg";
 
 // 시트별 구조 설정
 const sheetConfigs = {
-  "Regional totals": { headerRow: 14, dataStartCol: 1 },
-  "Local currency financial years": { headerRow: 8, dataStartCol: 1 },
-  "Local currency calendar years": { headerRow: 7, dataStartCol: 1 },
-  "Constant (2023) US$": { headerRow: 6, dataStartCol: 1 },
-  "Current US$": { headerRow: 6, dataStartCol: 1 },
-  "Share of GDP": { headerRow: 6, dataStartCol: 1 },
-  "Per capita": { headerRow: 7, dataStartCol: 1 },
-  "Share of Govt. spending": { headerRow: 8, dataStartCol: 1 },
+  "Regional totals": { headerRow: 14, dataStartCol: 1, dataEndCol: "AL" },
+  "Local currency financial years": {
+    headerRow: 8,
+    dataStartCol: 1,
+    dataEndCol: "CB",
+  },
+  "Local currency calendar years": {
+    headerRow: 7,
+    dataStartCol: 1,
+    dataEndCol: "CA",
+  },
+  "Constant (2023) US$": { headerRow: 6, dataStartCol: 1, dataEndCol: "CA" },
+  "Current US$": { headerRow: 6, dataStartCol: 1, dataEndCol: "BZ" },
+  "Share of GDP": { headerRow: 6, dataStartCol: 1, dataEndCol: "BZ" },
+  "Per capita": { headerRow: 7, dataStartCol: 1, dataEndCol: "AM" },
+  "Share of Govt. spending": {
+    headerRow: 8,
+    dataStartCol: 1,
+    dataEndCol: "AN",
+  },
 };
 
 // 인증 클라이언트 생성
@@ -43,7 +55,7 @@ async function exportSheets() {
     if (!config) continue;
 
     const { headerRow, dataStartCol } = config;
-    const range = `'${title}'!A1:Z1000`;
+    const range = `'${title}'!A1:${config.dataEndCol}`;
 
     const resp = await sheets.spreadsheets.values.get({
       spreadsheetId: ssId,

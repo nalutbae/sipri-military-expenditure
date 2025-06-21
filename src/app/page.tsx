@@ -43,9 +43,6 @@ const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
 ". ." = 데이터 없음. "xxx" = 해당 연도의 일부 또는 전부 동안 해당 국가가 존재하지 않았거나 독립적이지 않았음.
 
 
-
- * 
- * 
  */
 const sheets = [
   { file: "Regional_totals.json", label: "세계 및 지역별 군사비 요약." },
